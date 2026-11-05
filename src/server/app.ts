@@ -43,7 +43,7 @@ main{max-width:1280px;margin:0 auto;padding:24px 16px}
 .card .b{padding:10px 12px}.card h3{margin:0 0 4px;font-size:15px}.muted{color:var(--muted);font-size:13px}
 .badge{display:inline-block;color:#fff;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px}
 .players{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:16px;align-items:start}
-.players video{width:100%;border-radius:10px;background:#000}
+.players video{width:100%;max-height:78vh;border-radius:10px;background:#000}
 @media(max-width:800px){.players{grid-template-columns:1fr}}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:16px}
 .panel h2{margin:0 0 10px;font-size:16px}
@@ -118,9 +118,9 @@ export function createApp() {
       <h1 style="margin:0 0 6px">${esc(v.marke)} ${esc(v.modell)} ${esc(v.modellar)} ${r.variant === 'sold' ? '· SÅLD-version' : ''}</h1>
       <p>${badge(r.status)} <span class="muted">Video #${r.id} · ${r.duration_s ? Number(r.duration_s).toFixed(1) + ' s · ' : ''}uppdaterad ${fmtTime(r.updated_at)}</span></p>
       ${r.file_vertical ? `<div class="players">
-        <div><div class="muted">9:16 – Reels/Stories</div><video src="${fileUrl(r.file_vertical)}" controls playsinline preload="metadata"></video>
+        <div><div class="muted">9:16 – Reels/Stories</div><video src="${fileUrl(r.file_vertical)}#t=3" controls playsinline preload="metadata"></video>
           <a class="muted" href="${fileUrl(r.file_vertical)}" download>Ladda ner</a></div>
-        <div><div class="muted">16:9 – webb/Facebook</div><video src="${fileUrl(r.file_landscape)}" controls playsinline preload="metadata"></video>
+        <div><div class="muted">16:9 – webb/Facebook</div><video src="${fileUrl(r.file_landscape)}#t=3" controls playsinline preload="metadata"></video>
           <a class="muted" href="${fileUrl(r.file_landscape)}" download>Ladda ner</a></div></div>` : `<div class="panel">Videon är inte klar än (${esc(STATUS[r.status]?.[0])}). Ladda om sidan om en stund.</div>`}
       ${r.error ? `<div class="panel"><h2>Senaste fel</h2><div class="err">${esc(r.error)}</div></div>` : ''}
       <div class="panel"><h2>Granska</h2>

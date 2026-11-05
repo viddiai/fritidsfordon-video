@@ -104,12 +104,12 @@ export async function processVideo(video: VideoRow, log = console.log) {
   log(`[video ${video.id}] Klar (${vert.seconds.toFixed(1)} s) -> ${status}`);
 }
 
-/** När en video godkänns blir äldre godkända videor för samma fordon ersatta. */
+/** När en video godkänns blir äldre videor (godkända eller ogranskade) för samma fordon ersatta. */
 export async function supersedeOlder(videoId: number) {
   const d = await db();
   await d.query(
     `update videos set status = 'superseded', updated_at = now()
-     where vehicle_id = (select vehicle_id from videos where id = $1) and id <> $1 and status in ('approved','review')`,
+     where vehicle_id = (select vehicle_id from videos where id = $1) and id < $1 and status in ('approved','review')`,
     [videoId]);
 }
 

@@ -130,11 +130,11 @@ const Outro: React.FC<SceneProps> = ({p, s}) => {
 const SoldBadge: React.FC<{vertical: boolean}> = ({vertical}) => {
   const f = useCurrentFrame(); const {fps} = useVideoConfig();
   const s = spring({frame: f - 4, fps, config: {damping: 14}});
-  const w = vertical ? 760 : 640;
+  const w = vertical ? 560 : 600;
   return <div style={{position: 'absolute', top: 0, right: 0, width: w, height: w, overflow: 'hidden', pointerEvents: 'none'}}>
     <div style={{position: 'absolute', top: w * 0.2, right: -w * 0.28, width: w * 1.1, transform: `rotate(45deg) scale(${s})`,
       background: BRAND.red, color: 'white', textAlign: 'center', fontFamily: font, fontWeight: 900,
-      fontSize: vertical ? 96 : 80, letterSpacing: 10, padding: '18px 0', boxShadow: '0 10px 40px rgba(0,0,0,.45)',
+      fontSize: vertical ? 76 : 76, letterSpacing: 10, padding: '18px 0', boxShadow: '0 10px 40px rgba(0,0,0,.45)',
       borderTop: '4px solid rgba(255,255,255,.85)', borderBottom: '4px solid rgba(255,255,255,.85)'}}>SÅLD</div>
   </div>;
 };
